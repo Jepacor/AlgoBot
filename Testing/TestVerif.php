@@ -9,6 +9,8 @@ class TestVerif
         $req->bindParam(":id_result", $id_result);
         $req->execute();
         $sortie = $req->fetch();
+        echo "résultat donné : " . $result_donne . "<br>";
+        echo "résultat attendu : " . $sortie["Sortie"] . "<br>";
         if ($sortie["Sortie"] == $result_donne) {
             return true;
         }
@@ -29,4 +31,11 @@ class TestVerif
         }
         return $resultats_niveau_verif;
     }
+
+    public static function verif_function ($function, string $entree, int $id_resultat) : bool{
+        $sortie = $function($entree);
+        return self::verif($id_resultat, $sortie);
+    }
+
+
 }
