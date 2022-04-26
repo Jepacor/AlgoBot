@@ -1,0 +1,38 @@
+<!--<script>-->
+<!--//     import * as Blockly from 'blockly/core';-->
+<!--// import 'blockly/blocks';-->
+<!--// import 'blockly/php';-->
+<!--// import * as Fr from 'blockly/msg/fr';-->
+<script src="./node_modules/blockly/blockly_compressed.js"></script>
+<script src="./node_modules/blockly/blocks_compressed.js"></script>
+<script src="./node_modules/blockly/msg/en.js"></script>
+<script>
+// Blockly.setLocale(Fr);
+var toolbox = {
+    "kind": "flyoutToolbox",
+    "contents": [
+        {
+            "kind": "block",
+            "type": "controls_if"
+        },
+        {
+            "kind": "block",
+            "type": "controls_whileUntil"
+        }
+    ]
+};
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Blockly</title>
+</head>
+<body>
+<div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+<script>
+    var workspace = Blockly.inject('blocklyDiv', {toolbox: toolbox});
+</script>
+</body>
+</html>
