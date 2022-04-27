@@ -37,5 +37,11 @@ class TestVerif
         return self::verif($id_resultat, $sortie);
     }
 
-
+    public static function boolToString(bool $bool) : void {
+        if ($bool) {
+            echo "True<br>";
+        } else {
+            echo "False<br>";
+        }
+    }
 }

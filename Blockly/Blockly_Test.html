@@ -55,12 +55,17 @@
 <script>
     var run = function() {
         var code = Blockly.PHP.workspaceToCode(workspace);
+        document.getElementById('envoiCode').value = code;
         alert(code);
     };
 </script>
 <script>
     var workspace = Blockly.inject('blocklyDiv', {toolbox: document.getElementById('toolbox')});
 </script>
-<button type="button" onclick="run()">Tester !</button>
+<button type="button" onclick="run()">Debug : regarder le code !</button>
+<form action="./Resultat.php" method="post">
+    <input type="hidden" name="code" id="envoiCode" value="">
+    <input type="submit" onclick="run()" value="Vérifier !">
+</form>
 </body>
 </html>
