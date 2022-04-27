@@ -3,24 +3,21 @@
 <!--// import 'blockly/blocks';-->
 <!--// import 'blockly/php';-->
 <!--// import * as Fr from 'blockly/msg/fr';-->
-<script src="./node_modules/blockly/blockly_compressed.js"></script>
-<script src="./node_modules/blockly/blocks_compressed.js"></script>
-<script src="./node_modules/blockly/msg/en.js"></script>
+<!DOCTYPE html>
+<script src="../node_modules/blockly/blockly_compressed.js"></script>
+<script src="../node_modules/blockly/blocks_compressed.js"></script>
+<script src="../node_modules/blockly/msg/fr.js"></script>
+<script src="../node_modules/blockly/php_compressed.js"></script>
 <script>
-// Blockly.setLocale(Fr);
-var toolbox = {
-    "kind": "flyoutToolbox",
-    "contents": [
-        {
-            "kind": "block",
-            "type": "controls_if"
-        },
-        {
-            "kind": "block",
-            "type": "controls_whileUntil"
-        }
-    ]
-};
+    //     function sleep(milliseconds) {
+    //     const date = Date.now();
+    //     let currentDate = null;
+    //     do {
+    //     currentDate = Date.now();
+    // } while (currentDate - date < milliseconds);
+    // }
+    //     sleep(50);
+    // Pas forcément nécéssaire ? C'était pour éviter que Blockly se charge avant
 </script>
 
 <!DOCTYPE html>
@@ -30,9 +27,40 @@ var toolbox = {
     <title>Test Blockly</title>
 </head>
 <body>
+<h1>Premiers pas</h1>
+<p>L'objectif est de réaliser une opération de multiplication basique sur x : <b>On veut que le résultat final soit x*2.</b><br></p>
+<p>x peut être n'importe quelle valeur, comme en maths ! Il s'agit de créer une suite d'instructions qui marchera quelque soit x.</p>
 <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+    <block type="variables_get">
+        <field name="VAR" id="-AK(qZPO0-8:eJY`u2df">x</field>
+    </block>
+    <block type="variables_set">
+        <field name="VAR" id="-AK(qZPO0-8:eJY`u2df">x</field>
+    </block>
+    <block type="math_arithmetic">
+        <field name="OP">MULTIPLY</field>
+        <value name="A">
+            <shadow type="math_number">
+                <field name="NUM">1</field>
+            </shadow>
+        </value>
+        <value name="B">
+            <shadow type="math_number">
+                <field name="NUM">1</field>
+            </shadow>
+        </value>
+    </block>
+</xml>
 <script>
-    var workspace = Blockly.inject('blocklyDiv', {toolbox: toolbox});
+    var run = function() {
+        var code = Blockly.PHP.workspaceToCode(workspace);
+        alert(code);
+    };
 </script>
+<script>
+    var workspace = Blockly.inject('blocklyDiv', {toolbox: document.getElementById('toolbox')});
+</script>
+<button type="button" onclick="run()">Tester !</button>
 </body>
 </html>

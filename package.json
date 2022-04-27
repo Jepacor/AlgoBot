@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Jepacor/AlgoBot#readme",
   "dependencies": {
-    "blockly": "^8.0.0"
+    "blockly": "^8.0.1-beta.0",
+    "nw": "^0.63.1"
   }
 }
