@@ -8,19 +8,20 @@
 <script src="../node_modules/blockly/blocks_compressed.js"></script>
 <script src="../node_modules/blockly/msg/fr.js"></script>
 <script src="../node_modules/blockly/php_compressed.js"></script>
+<script src="../node_modules/blockly/javascript_compressed.js"></script>
+<script src="../Testing/require.js"></script>
+<script src="../Testing/TestVerif.js"></script>
 <script>
-    //     function sleep(milliseconds) {
-    //     const date = Date.now();
-    //     let currentDate = null;
-    //     do {
-    //     currentDate = Date.now();
-    // } while (currentDate - date < milliseconds);
-    // }
-    //     sleep(50);
+        function sleep(milliseconds) {
+        const date = Date.now();
+        let currentDate = null;
+        do {
+        currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+    }
+        sleep(50);
     // Pas forcément nécéssaire ? C'était pour éviter que Blockly se charge avant
 </script>
-
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -58,14 +59,34 @@
         document.getElementById('envoiCode').value = code;
         alert(code);
     };
+    var verifJS = function() {
+        var code = Blockly.JavaScript.workspaceToCode(workspace);
+        document.getElementById('envoiCode').value = code;
+        function algoUser(x) {
+            eval(code);
+            return x;
+        }
+        let x = 2;
+        let resultat = algoUser(x);
+        let result1 = verif(1,resultat)
+        x = 8;
+        resultat = algoUser(x);
+        let result2 = verif(2,resultat)
+        if (result1 && result2) {
+            alert("Bravo, vous avez réussi !");
+        } else {
+            alert("Désolé, vous n'avez pas réussi !");
+        }
+        alert(code);
+    };
 </script>
 <script>
     var workspace = Blockly.inject('blocklyDiv', {toolbox: document.getElementById('toolbox')});
 </script>
-<button type="button" onclick="run()">Debug : regarder le code !</button>
+<button type="button" onclick="verifJS()">Vérification en JS !</button>
 <form action="./Resultat.php" method="post">
     <input type="hidden" name="code" id="envoiCode" value="">
-    <input type="submit" onclick="run()" value="Vérifier !">
+    <input type="submit" onclick="run()" value="Vérifier en PHP !">
 </form>
 </body>
 </html>

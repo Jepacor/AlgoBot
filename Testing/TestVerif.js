@@ -1,7 +1,11 @@
+//import * as mysql from '../node_modules/mysql2/index.js';
 
 function connectDBMySQL(){
-    var mysql = require('mysql2');
-    var connection = mysql.createConnection({
+    const mysql = require(['../node_modules/mysql/index'], function (mysql2) {
+        console.log("mysql chargé");
+    });
+    //const mysql = require('mysql2');
+    const connection = mysql.createConnection({
         host: 'localhost',
         user: 'root',
         password: 'root',
@@ -14,10 +18,13 @@ function connectDBMySQL(){
 
 function verif(id_result, result_donne)
 {
-    var connection = connectDBMySQL();
-    var requete = "SELECT Sortie FROM Sorties WHERE Id_Resultats = " + id_result;
-    var rep = connection.execute(requete);
-    var sortie = result[0];
+    let connection = connectDBMySQL();
+    let requete = "SELECT Sortie FROM Sorties WHERE Id_Resultats = ?";
+    connection.execute(requete,id_result,function(err,results,fields){
+        console.log(results);
+        console.log(fields);
+    });
+    let sortie = results[0];
     console.log("résultat donné : " + result_donne);
     console.log("résultat attendu : " + sortie);
     if(sortie == result_donne)
