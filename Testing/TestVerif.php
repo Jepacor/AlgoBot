@@ -1,7 +1,38 @@
 <?php
 require_once("MyPDO.php");
+//Probablement besoin de refactor tout ça...
 class TestVerif
 {
+    public static function getTestsNiveau($niveau) : void
+    {
+        $entrees = new ArrayObject();
+        $sorties = new ArrayObject();
+        $pdo = MyPDO::getInstance();
+        $req = $pdo->prepare("SELECT Id_Resultats FROM Resultats WHERE Niveau = :niveau");
+        $req->bindParam(":niveau", $niveau);
+        $req->execute();
+        $resultrequete = $req->fetchAll();
+//        var_dump($resultrequete);
+        foreach ($resultrequete as $ligne){
+            $req = $pdo->prepare("SELECT Sortie FROM Sorties WHERE Id_Resultats = :id_result");
+            $req->bindParam(":id_result", $ligne['Id_Resultats']);
+            $req->execute();
+            $resultsortie = $req->fetchAll();
+            foreach ($resultsortie as $sortie){
+                $sorties->append($sortie["Sortie"]);
+            }
+            $req = $pdo->prepare("SELECT Entree FROM Entrees WHERE Id_Resultats = :id_result");
+            $req->bindParam(":id_result", $ligne['Id_Resultats']);
+            $req->execute();
+            $resultentree = $req->fetchAll();
+            foreach ($resultentree as $entree){
+                $entrees->append($entree["Entree"]);
+            }
+        }
+//        echo "<br>";
+        echo json_encode(array("entrees" => $entrees, "sorties" => $sorties));
+    }
+
     public static function verif(int $id_result, string $result_donne): bool
     {
         $pdo = MyPDO::getInstance();

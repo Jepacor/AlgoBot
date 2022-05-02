@@ -21,7 +21,7 @@ function doublage(int $entree) : int {
 $doublage = "doublage";
 $testFunction = TestVerif::verif_function($doublage, 3, 1);
 TestVerif::boolToString($testFunction);
-
+TestVerif::getTestsNiveau(1);
 
 
 

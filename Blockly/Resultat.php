@@ -2,7 +2,7 @@
 ini_set('display_errors', 1);
 require_once ("../Testing/TestVerif.php");
 if (!isset($_POST['code'])){
-    header('Location: Blockly_Test.html');
+    header('Location: Blockly_Test.php');
 }
 else{
     try {
@@ -31,7 +31,7 @@ else{
         }
         else{
             echo "<h3> Vous n'avez pas réussi les tests ! Réessayer ? </h3>";
-            echo "<a href='Blockly_Test.html'>Cliquez ici</a>";
+            echo "<a href='Blockly_Test.php'>Cliquez ici</a>";
         }
     }
     catch (Exception $e){
