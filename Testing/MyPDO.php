@@ -2,6 +2,7 @@
 require("Config/DBConfig.php");
 class MyPDO
 {
+    //Tiens, c'est un singleton :O : https://fr.wikipedia.org/wiki/Singleton_(patron_de_conception)
     private static $instance;
 
     public static function getInstance() : PDO

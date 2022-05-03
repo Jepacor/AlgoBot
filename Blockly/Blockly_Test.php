@@ -2,7 +2,7 @@
 <!--//     import * as Blockly from 'blockly/core';-->
 <!--// import 'blockly/blocks';-->
 <!--// import 'blockly/php';-->
-<!--// import * as Fr from 'blockly/msg/fr';-->
+<!--// import * as Fr from 'blockly/msg/fr'; possible TODO utiliser ces imports-->
 <?php
 require_once ("../Testing/TestVerif.php");
 ?>
@@ -13,23 +13,13 @@ require_once ("../Testing/TestVerif.php");
 <script src="../node_modules/blockly/php_compressed.js"></script>
 <script src="../node_modules/blockly/javascript_compressed.js"></script>
 <!--<script src="../Testing/require.js"></script>-->
-<!--<script src="../Testing/TestVerif.js"></script>-->
-<script>
-    //     function sleep(milliseconds) {
-    //     const date = Date.now();
-    //     let currentDate = null;
-    //     do {
-    //     currentDate = Date.now();
-    // } while (currentDate - date < milliseconds);
-    // }
-    //     sleep(50);
-    // Pas forcément nécéssaire ? C'était pour éviter que Blockly se charge avant
-</script>
+<script src="../Testing/TestVerif.js"></script>
 <script>
     //Récupération des tests dans la base de données
     const tests = <?php  TestVerif::getTestsNiveau(1); ?>;
     const entrees = tests.entrees;
     const sorties = tests.sorties;
+    const nbTests = Object.keys(entrees).length;
 </script>
 <html lang="en">
 <head>
@@ -68,53 +58,11 @@ require_once ("../Testing/TestVerif.php");
         document.getElementById('envoiCode').value = code;
         alert(code);
     };
-    var verifJS = function() {
-        var code = Blockly.JavaScript.workspaceToCode(workspace);
-        document.getElementById('envoiCode').value = code;
-        function algoUser(x) {
-            eval(code);
-            return x;
-        }
-        let i = 0;
-        let max = 2; // TODO : Trouver comment définir dynamiquement max
-        console.log(max);
-        for(i; i < max; i++) {
-            let x = entrees[i];
-            let y = algoUser(x);
-            if(y != sorties[i]) {
-                alert("Erreur : " + y + " ne correspond pas au résultat attendu : " + sorties[i]);
-            }
-            else {
-                alert("Bravo, vous avez réussi le test n°" + i+1);
-            }
-        }
-        // entrees.forEach((entree) => {
-        //     let resultat = algoUser(entree[i]);
-        //     if (resultat == sorties[i]) {
-        //         alert("Bravo, vous avez réussi le test n°" + i);
-        //     } else {
-        //         alert("Désolé, vous n'avez pas réussi le test n°" + i);
-        //     }
-        //     i++;
-        // });
-        // let x = 2;
-        // let resultat = algoUser(x);
-        // let result1 = verif(1,resultat)
-        // x = 8;
-        // resultat = algoUser(x);
-        // let result2 = verif(2,resultat)
-        // if (result1 && result2) {
-        //     alert("Bravo, vous avez réussi !");
-        // } else {
-        //     alert("Désolé, vous n'avez pas réussi !");
-        // }
-        alert(code);
-    };
 </script>
 <script>
     var workspace = Blockly.inject('blocklyDiv', {toolbox: document.getElementById('toolbox')});
 </script>
-<button type="button" onclick="verifJS()">Vérification en JS !</button>
+<button type="button" onclick="verifJS(nbTests)">Vérification en JS !</button>
 <form action="./Resultat.php" method="post">
     <input type="hidden" name="code" id="envoiCode" value="">
     <input type="submit" onclick="run()" value="Vérifier en PHP !">

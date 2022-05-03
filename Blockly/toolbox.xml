@@ -1,0 +1,21 @@
+<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+    <block type="variables_get">
+        <field name="VAR" id="-AK(qZPO0-8:eJY`u2df">x</field>
+    </block>
+    <block type="variables_set">
+        <field name="VAR" id="-AK(qZPO0-8:eJY`u2df">x</field>
+    </block>
+    <block type="math_arithmetic">
+        <field name="OP">MULTIPLY</field>
+        <value name="A">
+            <shadow type="math_number">
+                <field name="NUM">1</field>
+            </shadow>
+        </value>
+        <value name="B">
+            <shadow type="math_number">
+                <field name="NUM">1</field>
+            </shadow>
+        </value>
+    </block>
+</xml>

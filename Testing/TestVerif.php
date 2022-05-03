@@ -1,59 +1,51 @@
 <?php
 require_once("MyPDO.php");
-//Probablement besoin de refactor tout ça...
 class TestVerif
 {
+    public static function requeteStandard(string $requete, array $parametres) : array
+    {
+        $pdo = MyPDO::getInstance();
+        $stmt = $pdo->prepare($requete);
+        $stmt->execute($parametres);
+        return $stmt->fetchAll();
+    }
+
     public static function getTestsNiveau($niveau) : void
     {
         $entrees = new ArrayObject();
         $sorties = new ArrayObject();
-        $pdo = MyPDO::getInstance();
-        $req = $pdo->prepare("SELECT Id_Resultats FROM Resultats WHERE Niveau = :niveau");
-        $req->bindParam(":niveau", $niveau);
-        $req->execute();
-        $resultrequete = $req->fetchAll();
-//        var_dump($resultrequete);
+        $resultrequete = self::requeteStandard("SELECT Id_Resultats FROM Resultats WHERE Niveau = :niveau",
+            array(":niveau" => $niveau));
         foreach ($resultrequete as $ligne){
-            $req = $pdo->prepare("SELECT Sortie FROM Sorties WHERE Id_Resultats = :id_result");
-            $req->bindParam(":id_result", $ligne['Id_Resultats']);
-            $req->execute();
-            $resultsortie = $req->fetchAll();
+            $resultsortie = self::requeteStandard("SELECT Sortie FROM Sorties WHERE Id_Resultats = :id_result",
+                array(":id_result" => $ligne['Id_Resultats']));
             foreach ($resultsortie as $sortie){
                 $sorties->append($sortie["Sortie"]);
             }
-            $req = $pdo->prepare("SELECT Entree FROM Entrees WHERE Id_Resultats = :id_result");
-            $req->bindParam(":id_result", $ligne['Id_Resultats']);
-            $req->execute();
-            $resultentree = $req->fetchAll();
+            $resultentree = self::requeteStandard("SELECT Entree FROM Entrees WHERE Id_Resultats = :id_result",
+                array(":id_result" => $ligne['Id_Resultats']));
             foreach ($resultentree as $entree){
                 $entrees->append($entree["Entree"]);
             }
         }
-//        echo "<br>";
         echo json_encode(array("entrees" => $entrees, "sorties" => $sorties));
     }
 
     public static function verif(int $id_result, string $result_donne): bool
     {
-        $pdo = MyPDO::getInstance();
-        $req = $pdo->prepare("SELECT Sortie FROM Sorties WHERE Id_Resultats = :id_result");
-        $req->bindParam(":id_result", $id_result);
-        $req->execute();
-        $sortie = $req->fetch();
+        $sortie = self::requeteStandard("SELECT Sortie FROM Sorties WHERE Id_Resultats = :id_result",
+            array(":id_result" => $id_result));
         echo "résultat donné : " . $result_donne . "<br>";
-        echo "résultat attendu : " . $sortie["Sortie"] . "<br>";
-        if ($sortie["Sortie"] == $result_donne) {
+        echo "résultat attendu : " . $sortie[0]["Sortie"] . "<br>";
+        if ($sortie[0]["Sortie"] == $result_donne) {
             return true;
         }
         return false;
     }
     public static function verif_Niveau (int $id_niveau, array $resultats) : array
     {
-        $pdo = MyPDO::getInstance();
-        $req = $pdo->prepare("SELECT Id_Resultats FROM Resultats WHERE Niveau = :id_niveau");
-        $req->bindParam(":id_niveau", $id_niveau);
-        $req->execute();
-        $resultats_niveau = $req->fetchAll();
+        $resultats_niveau = self::requeteStandard("SELECT Id_Resultats FROM Resultats WHERE Niveau = :id_niveau",
+            array(":id_niveau" => $id_niveau));
         $resultats_niveau_verif = [];
         $i = 0;
         foreach ($resultats_niveau as $id_result) {
