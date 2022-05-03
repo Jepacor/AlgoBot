@@ -14,6 +14,10 @@ require_once ("../Testing/TestVerif.php");
 <script src="../node_modules/blockly/javascript_compressed.js"></script>
 <!--<script src="../Testing/require.js"></script>-->
 <script src="../Testing/TestVerif.js"></script>
+<!--React-->
+<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
 <script>
     //Récupération des tests dans la base de données
     const tests = <?php  TestVerif::getTestsNiveau(1); ?>;
@@ -27,9 +31,13 @@ require_once ("../Testing/TestVerif.php");
     <title>Test Blockly</title>
 </head>
 <body>
-<h1>Premiers pas</h1>
-<p>L'objectif est de réaliser une opération de multiplication basique sur x : <b>On veut que le résultat final soit x*2.</b><br></p>
-<p>x peut être n'importe quelle valeur, comme en maths ! Il s'agit de créer une suite d'instructions qui marchera quelque soit x.</p>
+<div id ="root"></div>
+<script type="text/babel" src="TestTexte.js">
+    //Permet d'avoir le texte dans un fichier différent, mais pas révolutionnaire pour le moment
+</script>
+<!--<h1>Premiers pas</h1>-->
+<!--<p>L'objectif est de réaliser une opération de multiplication basique sur x : <b>On veut que le résultat final soit x*2.</b><br></p>-->
+<!--<p>x peut être n'importe quelle valeur, comme en maths ! Il s'agit de créer une suite d'instructions qui marchera quelque soit x.</p>-->
 <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
 <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
     <block type="variables_get">
