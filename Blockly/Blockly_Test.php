@@ -39,27 +39,7 @@ require_once ("../Testing/TestVerif.php");
 <!--<p>L'objectif est de réaliser une opération de multiplication basique sur x : <b>On veut que le résultat final soit x*2.</b><br></p>-->
 <!--<p>x peut être n'importe quelle valeur, comme en maths ! Il s'agit de créer une suite d'instructions qui marchera quelque soit x.</p>-->
 <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
-<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
-    <block type="variables_get">
-        <field name="VAR" id="-AK(qZPO0-8:eJY`u2df">x</field>
-    </block>
-    <block type="variables_set">
-        <field name="VAR" id="-AK(qZPO0-8:eJY`u2df">x</field>
-    </block>
-    <block type="math_arithmetic">
-        <field name="OP">MULTIPLY</field>
-        <value name="A">
-            <shadow type="math_number">
-                <field name="NUM">1</field>
-            </shadow>
-        </value>
-        <value name="B">
-            <shadow type="math_number">
-                <field name="NUM">1</field>
-            </shadow>
-        </value>
-    </block>
-</xml>
+<script type="text/babel" src="toolbox.js"></script>
 <script>
     var run = function() {
         var code = Blockly.PHP.workspaceToCode(workspace);
@@ -68,7 +48,7 @@ require_once ("../Testing/TestVerif.php");
     };
 </script>
 <script>
-    var workspace = Blockly.inject('blocklyDiv', {toolbox: document.getElementById('toolbox')});
+    var workspace = Blockly.inject('blocklyDiv', {toolbox: toolbox});
 </script>
 <button type="button" onclick="verifJS(nbTests)">Vérification en JS !</button>
 <form action="./Resultat.php" method="post">

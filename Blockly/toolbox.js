@@ -1,4 +1,4 @@
-<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+const toolbox = <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
     <block type="variables_get">
         <field name="VAR" id="-AK(qZPO0-8:eJY`u2df">x</field>
     </block>
