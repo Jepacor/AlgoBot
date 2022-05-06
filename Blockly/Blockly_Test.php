@@ -35,12 +35,24 @@ require_once ("../Testing/TestVerif.php");
 <script type="text/babel" src="TestTexte.js">
     //Permet d'avoir le texte dans un fichier différent, mais pas révolutionnaire pour le moment
 </script>
-<!--<h1>Premiers pas</h1>-->
-<!--<p>L'objectif est de réaliser une opération de multiplication basique sur x : <b>On veut que le résultat final soit x*2.</b><br></p>-->
-<!--<p>x peut être n'importe quelle valeur, comme en maths ! Il s'agit de créer une suite d'instructions qui marchera quelque soit x.</p>-->
 <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
-<script type="text/babel" src="toolbox.js"></script>
+<!--<script type="text/babel" src="toolbox.xml"></script>-->
 <script>
+    // let getXMLFile = function (path) {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', 'toolbox.xml');
+        xhr.setRequestHeader('Content-Type', 'text/xml');
+        xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log(xhr.responseXML);
+            // return xhr.responseXML;
+            const toolbox = xhr.responseXML.activeElement;
+            var workspace = Blockly.inject('blocklyDiv', {toolbox : toolbox});
+        }
+    };
+        xhr.send();
+        // return xhr.responseXML;
+    // };
     var run = function() {
         var code = Blockly.PHP.workspaceToCode(workspace);
         document.getElementById('envoiCode').value = code;
@@ -48,7 +60,8 @@ require_once ("../Testing/TestVerif.php");
     };
 </script>
 <script>
-    var workspace = Blockly.inject('blocklyDiv', {toolbox: toolbox});
+    // let toolbox = getXMLFile('toolbox.xml');
+
 </script>
 <button type="button" onclick="verifJS(nbTests)">Vérification en JS !</button>
 <form action="./Resultat.php" method="post">
@@ -57,3 +70,5 @@ require_once ("../Testing/TestVerif.php");
 </form>
 </body>
 </html>
+
+
