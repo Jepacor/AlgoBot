@@ -39,6 +39,12 @@ var verifJS = function(nbTests) {
         donnees.append("niveau",1);
         envoi.open("POST", "writeCode.php");
         envoi.send(donnees);
+        //Niveau suivant !
+        console.log("Niveau suivant");
+        let texteIntro = document.getElementById("niveauTexte");
+        texteIntro.src = "TexteFizzbuzz.js";
+        ReactDOM.render(intro, document.getElementById('root'));
+        renderBlockly('../Blockly/toolboxFizzbuzz.xml');
     }
     //alert(code);
 };

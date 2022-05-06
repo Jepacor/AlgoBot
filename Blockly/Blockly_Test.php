@@ -32,36 +32,39 @@ require_once ("../Testing/TestVerif.php");
 </head>
 <body>
 <div id ="root"></div>
-<script type="text/babel" src="TestTexte.js">
+<script  id = "niveauTexte" type="text/babel" src="TestTexte.js">
     //Permet d'avoir le texte dans un fichier différent, mais pas révolutionnaire pour le moment
 </script>
 <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
-<!--<script type="text/babel" src="toolbox.xml"></script>-->
 <script>
-    // let getXMLFile = function (path) {
+    function renderBlockly (toolboxPath) {
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', 'toolbox.xml');
+        xhr.open('GET', toolboxPath);
         xhr.setRequestHeader('Content-Type', 'text/xml');
         xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             console.log(xhr.responseXML);
-            // return xhr.responseXML;
-            const toolbox = xhr.responseXML.activeElement;
-            var workspace = Blockly.inject('blocklyDiv', {toolbox : toolbox});
+            if (workspace != null){
+                //Update de la toolbox pour passer au niveau suivant
+                workspace.updateToolbox(xhr.responseXML.activeElement);
+                workspace.clear();
+            }
+            else {
+                //Premier lancement de Blockly
+                workspace = Blockly.inject('blocklyDiv', {toolbox : xhr.responseXML.activeElement});
+            }
         }
     };
         xhr.send();
-        // return xhr.responseXML;
-    // };
+        // return xhr.onreadystatechange;
+    }
     var run = function() {
         var code = Blockly.PHP.workspaceToCode(workspace);
         document.getElementById('envoiCode').value = code;
         alert(code);
     };
-</script>
-<script>
-    // let toolbox = getXMLFile('toolbox.xml');
-
+    var workspace;
+    renderBlockly('toolbox.xml');
 </script>
 <button type="button" onclick="verifJS(nbTests)">Vérification en JS !</button>
 <form action="./Resultat.php" method="post">
