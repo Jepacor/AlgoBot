@@ -32,7 +32,7 @@ require_once ("../Testing/TestVerif.php");
 </head>
 <body>
 <div id ="root"></div>
-<script  id = "niveauTexte" type="text/babel" src="TestTexte.js">
+<script  id = "niveauTexte" type="text/babel" src="Enonce.js">
     //Permet d'avoir le texte dans un fichier différent, mais pas révolutionnaire pour le moment
 </script>
 <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
