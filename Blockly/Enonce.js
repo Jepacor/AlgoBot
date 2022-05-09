@@ -1,7 +1,7 @@
-// import {Component} from "react";
+import {Component} from "react";
 import {Niveau1} from "./TestTexte";
 import {Niveau2} from "./TexteFizzbuzz";
-// import reactDOM from "react-dom";
+import ReactDOM from "react-dom";
 
 class Enonce extends React.Component {
     render() {
@@ -10,6 +10,8 @@ class Enonce extends React.Component {
                 return <Niveau1/>;
             case "2":
                 return <Niveau2/>;
+            default:
+                return <Niveau1/>;
         }
     }
 }

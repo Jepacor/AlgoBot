@@ -1,8 +1,3 @@
-<!--<script>-->
-<!--//     import * as Blockly from 'blockly/core';-->
-<!--// import 'blockly/blocks';-->
-<!--// import 'blockly/php';-->
-<!--// import * as Fr from 'blockly/msg/fr'; possible TODO utiliser ces imports-->
 <?php
 require_once ("../Testing/TestVerif.php");
 ?>
@@ -12,14 +7,14 @@ require_once ("../Testing/TestVerif.php");
 <script src="../node_modules/blockly/msg/fr.js"></script>
 <script src="../node_modules/blockly/php_compressed.js"></script>
 <script src="../node_modules/blockly/javascript_compressed.js"></script>
-<!--<script src="../Testing/require.js"></script>-->
+<script src="../require.js"></script>
 <script src="../Testing/TestVerif.js"></script>
 <!--React-->
 <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
 <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
 <script>
-    //Récupération des tests dans la base de données
+    //Récupération dnpmes tests dans la base de données
     const tests = <?php  TestVerif::getTestsNiveau(1); ?>;
     const entrees = tests.entrees;
     const sorties = tests.sorties;
