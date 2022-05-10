@@ -14,7 +14,7 @@ require_once ("../Testing/TestVerif.php");
 <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
 <script>
-    //Récupération dnpmes tests dans la base de données
+    //Récupération des tests dans la base de données
     const tests = <?php  TestVerif::getTestsNiveau(1); ?>;
     const entrees = tests.entrees;
     const sorties = tests.sorties;

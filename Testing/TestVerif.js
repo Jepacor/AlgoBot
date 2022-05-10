@@ -1,4 +1,22 @@
-var verifJS = function(nbTests) {
+var tests, entrees, sorties, nbTests;
+function loadTests(niveau) {
+    var envoi;
+    envoi = new XMLHttpRequest();
+    envoi.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            tests = this.responseText;
+            entrees = tests.entrees;
+            sorties = tests.sorties;
+            nbTests = Object.keys(entrees).length;
+        }
+    };
+    var donnees = new FormData();
+    donnees.append("niveau",niveau);
+    envoi.open("POST", "getNiveau.php", true);
+    envoi.send();
+}
+
+function verifJS(nbTests) {
     var code = Blockly.JavaScript.workspaceToCode(workspace);
     document.getElementById('envoiCode').value = code;
     function algoUser(x) {
@@ -47,4 +65,5 @@ var verifJS = function(nbTests) {
         renderBlockly('../Blockly/toolboxFizzbuzz.xml');
     }
     //alert(code);
-};
+}
+

@@ -15,4 +15,11 @@ class MyPDO
             return self::$instance;
         }
     }
+    public static function requeteStandard(string $requete, array $parametres) : array
+    {
+        $pdo = self::getInstance();
+        $stmt = $pdo->prepare($requete);
+        $stmt->execute($parametres);
+        return $stmt->fetchAll();
+    }
 }

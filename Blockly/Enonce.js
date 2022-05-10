@@ -3,7 +3,7 @@ import {Niveau1} from "./TestTexte";
 import {Niveau2} from "./TexteFizzbuzz";
 import ReactDOM from "react-dom";
 
-class Enonce extends React.Component {
+class Enonce extends Component {
     render() {
         switch (this.props.niveau) {
             case "1":
@@ -15,4 +15,4 @@ class Enonce extends React.Component {
         }
     }
 }
-ReactDOM.render(<Enonce niveau="1"/>, document.getElementById("root"));
+ReactDOM.render(<Enonce niveau={1}/>, document.getElementById("root"));
