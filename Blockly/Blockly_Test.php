@@ -14,6 +14,7 @@ require_once ("../Testing/TestVerif.php");
 <script src="../node_modules/blockly/javascript_compressed.js"></script>
 <!--<script src="../Testing/require.js"></script>-->
 <script src="../Testing/TestVerif.js"></script>
+<script src="../Blockly/LoaderBlockly.js"></script>
 <!--React-->
 <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
 <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
@@ -37,27 +38,6 @@ require_once ("../Testing/TestVerif.php");
 </script>
 <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
 <script>
-    function renderBlockly (toolboxPath) {
-        const xhr = new XMLHttpRequest();
-        xhr.open('GET', toolboxPath);
-        xhr.setRequestHeader('Content-Type', 'text/xml');
-        xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            console.log(xhr.responseXML);
-            if (workspace != null){
-                //Update de la toolbox pour passer au niveau suivant
-                workspace.updateToolbox(xhr.responseXML.activeElement);
-                workspace.clear();
-            }
-            else {
-                //Premier lancement de Blockly
-                workspace = Blockly.inject('blocklyDiv', {toolbox : xhr.responseXML.activeElement});
-            }
-        }
-    };
-        xhr.send();
-        // return xhr.onreadystatechange;
-    }
     var run = function() {
         var code = Blockly.PHP.workspaceToCode(workspace);
         document.getElementById('envoiCode').value = code;
