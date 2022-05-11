@@ -2,23 +2,32 @@
 require_once ("../Testing/TestVerif.php");
 ?>
 <!DOCTYPE html>
-<script src="../node_modules/blockly/blockly_compressed.js"></script>
-<script src="../node_modules/blockly/blocks_compressed.js"></script>
-<script src="../node_modules/blockly/msg/fr.js"></script>
-<script src="../node_modules/blockly/php_compressed.js"></script>
-<script src="../node_modules/blockly/javascript_compressed.js"></script>
+<!--<script src="../node_modules/blockly/blockly_compressed.js"></script>-->
+<!--<script src="../node_modules/blockly/blocks_compressed.js"></script>-->
+<!--<script src="../node_modules/blockly/msg/fr.js"></script>-->
+<!--<script src="../node_modules/blockly/php_compressed.js"></script>-->
+<!--<script src="../node_modules/blockly/javascript_compressed.js"></script>-->
 <script src="../require.js"></script>
 <script src="../Testing/TestVerif.js"></script>
 <!--React-->
-<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
+<!--<script src="https://unpkg.com/react@16/umd/react.development.js"></script>-->
+<!--<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>-->
 <script>
+    require(["../node_modules/blockly/blockly_compressed",
+        "../node_modules/blockly/blocks_compressed",
+        "../node_modules/blockly/msg/fr",
+        "../node_modules/blockly/php_compressed",
+        "../node_modules/blockly/javascript_compressed"],
+        function (dependency) {
+            var workspace;
+            renderBlockly('toolbox.xml');
+        });
     //Récupération des tests dans la base de données
-    const tests = <?php  TestVerif::getTestsNiveau(1); ?>;
-    const entrees = tests.entrees;
-    const sorties = tests.sorties;
-    const nbTests = Object.keys(entrees).length;
+    //const tests = <?php // TestVerif::getTestsNiveau(1); ?>//;
+    // const entrees = tests.entrees;
+    // const sorties = tests.sorties;
+    // const nbTests = Object.keys(entrees).length;
 </script>
 <html lang="en">
 <head>
@@ -58,8 +67,6 @@ require_once ("../Testing/TestVerif.php");
         document.getElementById('envoiCode').value = code;
         alert(code);
     };
-    var workspace;
-    renderBlockly('toolbox.xml');
 </script>
 <button type="button" onclick="verifJS(nbTests)">Vérification en JS !</button>
 <form action="./Resultat.php" method="post">
