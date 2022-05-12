@@ -21,10 +21,17 @@ require_once ("../Testing/TestVerif.php");
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
 <script>
     //Récupération des tests dans la base de données
+
     const tests = <?php  TestVerif::getTestsNiveau(1); ?>;
     const entrees = tests.entrees;
     const sorties = tests.sorties;
     const nbTests = Object.keys(entrees).length;
+    function login() {
+       document.getElementById("Login").style.visibility = "visible";
+    }
+    function inscription() {
+        document.getElementById("Inscription").style.visibility = "visible";
+    }
 </script>
 <html lang="en">
 <head>
@@ -32,6 +39,21 @@ require_once ("../Testing/TestVerif.php");
     <title>Test Blockly</title>
 </head>
 <body>
+<div id="barre_login">
+    <button id="login_button" onclick="login()">Se connecter</button>
+    <button id="register_button" onclick="inscription()">S'inscrire</button>
+</div>
+<div id="formulaires">
+<!--    <object id="Inscription" type="text/html"  data="../Auth/Register.html"-->
+<!--    width="10%"-->
+<!--    height="10%">-->
+<!--    <object id="Login" type="text/html"  data="../Auth/LogForm.php"-->
+<!--            width="10%"-->
+<!--            height="10%">-->
+    <iframe src="../Auth/Register.html" id="Inscription" style="visibility: hidden"></iframe>
+    <iframe src="../Auth/LogForm.php" id="Login" style="visibility: hidden"></iframe>
+
+</div>
 <div id ="root"></div>
 <script  id = "niveauTexte" type="text/babel" src="TestTexte.js">
     //Permet d'avoir le texte dans un fichier différent, mais pas révolutionnaire pour le moment
