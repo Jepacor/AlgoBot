@@ -1,13 +1,14 @@
 <?php
-require_once ('Testing/MyPDO.php');
+require_once ('../Testing/MyPDO.php');
+ini_set('display_errors', 1);
 if(isset($_SESSION)){ //Pourquoi il veut s'inscrire si il est déjà connecté ?
     header('Location: /Blockly/Blockly_Test.php');
 }
-if(!isset($_POST['username']) || !isset($_POST['password']) || !isset($_POST['password2'])){
-    header('Location: Register.php'); //Si il n'a pas rempli tous les champs, il est redirigé vers la page d'inscription
+else if(empty($_POST['username']) || empty($_POST['password']) || empty($_POST['password2'])){
+    header('Location: Register.html'); //Si il n'a pas rempli tous les champs, il est redirigé vers la page d'inscription
 }
-if($_POST['password'] != $_POST['password2']){
-    header('Location: Register.php'); //Si les mots de passe ne sont pas identiques, il est redirigé vers la page d'inscription
+else if($_POST['password'] != $_POST['password2']){
+    header('Location: Register.html'); //Si les mots de passe ne sont pas identiques, il est redirigé vers la page d'inscription
 }
 else{
     $username = $_POST['username'];
@@ -15,6 +16,8 @@ else{
     $date = date("Y-m-d");
     $password = $date.$password; //La date est utilisée comme sel
     $password = hash('sha3-256', $password);
-    $insert = "INSERT INTO Utilisateurs (username, password, date_inscription) VALUES (:username, :password, :date)";
+    $insert = "INSERT INTO Utilisateurs (Username, Password, Date_Inscription) VALUES (:username, :password, :date)";
     MyPDO::requeteStandard($insert, array(':username' => $username, ':password' => $password, ':date' => $date));
+
+    echo "Vous êtes inscrit !<br>";
 }

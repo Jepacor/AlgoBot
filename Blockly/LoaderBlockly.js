@@ -1,4 +1,4 @@
-function renderBlockly (toolboxPath) {
+function renderBlockly (toolboxPath, nbBlocks) {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', toolboxPath);
     xhr.setRequestHeader('Content-Type', 'text/xml');
@@ -12,7 +12,13 @@ function renderBlockly (toolboxPath) {
             }
             else {
                 //Premier lancement de Blockly
-                workspace = Blockly.inject('blocklyDiv', {toolbox : xhr.responseXML.activeElement});
+                workspace = Blockly.inject('blocklyDiv', {maxBlocks: nbBlocks, trashcan: true, toolbox : xhr.responseXML.activeElement});
+                function onchange(event) {
+                    document.getElementById('capacity').textContent =
+                        workspace.remainingCapacity();
+                }
+                workspace.addChangeListener(onchange);
+                onchange();
             }
         }
     };

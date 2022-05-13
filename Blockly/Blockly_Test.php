@@ -28,9 +28,11 @@ require_once ("../Testing/TestVerif.php");
     const nbTests = Object.keys(entrees).length;
     function login() {
        document.getElementById("Login").style.visibility = "visible";
+        document.getElementById("Login").style.height = "250px";
     }
     function inscription() {
         document.getElementById("Inscription").style.visibility = "visible";
+        document.getElementById("Inscription").style.height = "300px";
     }
 </script>
 <html lang="en">
@@ -40,24 +42,26 @@ require_once ("../Testing/TestVerif.php");
 </head>
 <body>
 <div id="barre_login">
-    <button id="login_button" onclick="login()">Se connecter</button>
-    <button id="register_button" onclick="inscription()">S'inscrire</button>
+    <?php
+    session_start();
+    if(isset($_SESSION['username'])){
+        echo "Connecté en tant que ".$_SESSION['username'];
+    }
+    else{
+        echo "<button id='login_button' onclick='login()'>Se connecter</button>
+    <button id='register_button' onclick='inscription()'>S'inscrire</button>";
+    }
+    ?>
 </div>
 <div id="formulaires">
-<!--    <object id="Inscription" type="text/html"  data="../Auth/Register.html"-->
-<!--    width="10%"-->
-<!--    height="10%">-->
-<!--    <object id="Login" type="text/html"  data="../Auth/LogForm.php"-->
-<!--            width="10%"-->
-<!--            height="10%">-->
-    <iframe src="../Auth/Register.html" id="Inscription" style="visibility: hidden"></iframe>
-    <iframe src="../Auth/LogForm.php" id="Login" style="visibility: hidden"></iframe>
-
+    <iframe src="../Auth/Register.html" id="Inscription" style="visibility: hidden" height="0px"></iframe>
+    <iframe src="../Auth/LogForm.php" id="Login" style="visibility: hidden" height="0px"></iframe>
 </div>
 <div id ="root"></div>
 <script  id = "niveauTexte" type="text/babel" src="TestTexte.js">
     //Permet d'avoir le texte dans un fichier différent, mais pas révolutionnaire pour le moment
 </script>
+<p>Vous pouvez encore placer <b><span id="capacity" style="color: red"></span> blocs.</b></p>
 <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
 <script>
     var run = function() {
@@ -66,7 +70,7 @@ require_once ("../Testing/TestVerif.php");
         alert(code);
     };
     var workspace;
-    renderBlockly('toolbox.xml');
+    renderBlockly('toolbox.xml',6);
 </script>
 <button type="button" onclick="verifJS(nbTests)">Vérification en JS !</button>
 <form action="./Resultat.php" method="post">

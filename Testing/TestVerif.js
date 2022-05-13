@@ -22,6 +22,7 @@ var verifJS = function(nbTests) {
     }
     if(result == false) {
     }
+
     else {
         //envoi du code au serveur via AJAX
         var envoi = new XMLHttpRequest();

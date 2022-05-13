@@ -19,8 +19,10 @@ if (isset($_GET['error'])) {
 <form action="Login.php" method="post">
     <label for="username">Nom d'utilisateur</label>
     <input type="text" name="username" id="username">
+    <br>
     <label for="password">Mot de passe</label>
     <input type="password" name="password" id="password">
+    <br>
     <input type="submit" value="Se connecter">
 </form>
 <!--Pas de mot de passe oublié puisqu'on ne garde pas l'email -> à changer ? -->
