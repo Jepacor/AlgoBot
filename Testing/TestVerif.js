@@ -43,7 +43,7 @@ var verifJS = function(nbTests) {
         //Niveau suivant !
         console.log("Niveau suivant");
         let texteIntro = document.getElementById("test");
-        texteIntro.setAttribute("src","TexteFizzbuzz.js")
+        texteIntro.setAttribute("src","TexteFizzbuzz.html")
         renderBlockly('../Blockly/toolboxFizzbuzz.xml');
     }
     //alert(code);

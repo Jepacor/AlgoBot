@@ -7,19 +7,16 @@
 require_once ("../Testing/TestVerif.php");
 ?>
 <!DOCTYPE html>
+<!-- Blockly: https://developers.google.com/blockly/ -->
 <script src="../node_modules/blockly/blockly_compressed.js"></script>
 <script src="../node_modules/blockly/blocks_compressed.js"></script>
 <script src="../node_modules/blockly/msg/fr.js"></script>
 <script src="../node_modules/blockly/php_compressed.js"></script>
 <script src="../node_modules/blockly/javascript_compressed.js"></script>
-<!--<script src="../Testing/require.js"></script>-->
+<!-- Mes scripts -->
 <script src="../Testing/TestVerif.js"></script>
 <script src="LoaderBlockly.js"></script>
 <script src="LoaderNiveau.js"></script>
-<!--React-->
-<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
 <script>
     //Récupération des tests dans la base de données
 
@@ -42,7 +39,6 @@ require_once ("../Testing/TestVerif.php");
     <title>Test Blockly</title>
 </head>
 <body>
-<loader-niveau src="TestTexte.js" id="test"></loader-niveau>
 <div id="barre_login">
     <?php
     session_start();
@@ -59,8 +55,9 @@ require_once ("../Testing/TestVerif.php");
     <iframe src="../Auth/Register.html" id="Inscription" style="visibility: hidden" height="0px"></iframe>
     <iframe src="../Auth/LogForm.php" id="Login" style="visibility: hidden" height="0px"></iframe>
 </div>
+<loader-niveau src="TestTexte.html" id="test"></loader-niveau>
 <div id ="root"></div>
-<script  id = "niveauTexte" type="text/babel" src="TestTexte.js">
+<script  id = "niveauTexte" type="text/babel" src="TestTexte.html">
     //Permet d'avoir le texte dans un fichier différent, mais pas révolutionnaire pour le moment
 </script>
 <p>Vous pouvez encore placer <b><span id="capacity" style="color: red"></span> blocs.</b></p>
