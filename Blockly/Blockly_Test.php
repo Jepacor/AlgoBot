@@ -14,7 +14,8 @@ require_once ("../Testing/TestVerif.php");
 <script src="../node_modules/blockly/javascript_compressed.js"></script>
 <!--<script src="../Testing/require.js"></script>-->
 <script src="../Testing/TestVerif.js"></script>
-<script src="../Blockly/LoaderBlockly.js"></script>
+<script src="LoaderBlockly.js"></script>
+<script src="LoaderNiveau.js"></script>
 <!--React-->
 <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
 <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
@@ -41,6 +42,7 @@ require_once ("../Testing/TestVerif.php");
     <title>Test Blockly</title>
 </head>
 <body>
+<loader-niveau src="TestTexte.js" id="test"></loader-niveau>
 <div id="barre_login">
     <?php
     session_start();
