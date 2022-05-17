@@ -1,7 +1,6 @@
 class LoaderNiveau extends HTMLElement {
     constructor() {
         super();
-        // element created
     }
 
     connectedCallback() {
@@ -23,10 +22,6 @@ class LoaderNiveau extends HTMLElement {
         envoi.send();
     }
 
-    disconnectedCallback() {
-        // browser calls this method when the element is removed from the document
-        // (can be called many times if an element is repeatedly added/removed)
-    }
 
     static get observedAttributes() {
         return ['src'];
@@ -36,11 +31,5 @@ class LoaderNiveau extends HTMLElement {
         this.connectedCallback();
     }
 
-    adoptedCallback() {
-        // called when the element is moved to a new document
-        // (happens in document.adoptNode, very rarely used)
-    }
-
-    // there can be other element methods and properties
 }
 customElements.define("loader-niveau", LoaderNiveau);
