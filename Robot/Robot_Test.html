@@ -7,5 +7,20 @@
 </head>
 <body>
 <sprite-robot id="robot"></sprite-robot>
+<script>
+    document.addEventListener('keydown', (event) => {
+        var name = event.key;
+        if (name === 'ArrowUp') {
+            robot.moveUp();
+        } else if (name === 'ArrowDown') {
+            robot.moveDown();
+        } else if (name === 'ArrowLeft') {
+            robot.moveLeft();
+        } else if (name === 'ArrowRight') {
+            robot.moveRight();
+        }
+    });
+
+</script>
 </body>
 </html>
