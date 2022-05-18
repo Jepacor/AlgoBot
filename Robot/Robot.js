@@ -5,6 +5,7 @@ class Robot extends HTMLElement {
         super();
         this.x = 0;
         this.y = 0;
+        this.direction = "E";
     }
 
     connectedCallback() {
@@ -15,10 +16,28 @@ class Robot extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return ['src'];
+        return ['x', 'y', 'direction'];
     }
 
-    // attributeChangedCallback(name, oldValue, newValue) (je sais pas encore si je m'en servirais)
+    attributeChangedCallback(name, oldValue, newValue) {
+        switch (this.direction){
+            case "N":
+                this.firstChild.setAttribute('src', 'Sprites/Robot_up.png');
+                break;
+            case "E":
+                this.firstChild.setAttribute('src', 'Sprites/Robot_right2.png');
+                break;
+            case "S":
+                this.firstChild.setAttribute('src', 'Sprites/Robot_down.png');
+                break;
+            case "W":
+                this.firstChild.setAttribute('src', 'Sprites/Robot_left.png');
+                break;
+        }
+        this.x = this.getAttribute('x');
+        this.y = this.getAttribute('y');
+
+    }
 
     moveRight() {
         this.firstChild.setAttribute('src', 'Sprites/Robot_right2.png');
@@ -26,19 +45,20 @@ class Robot extends HTMLElement {
         this.style.left = this.x + 'px';
     }
 
-    moveLeft() {
+    moveLeft(undo = false) {
         this.firstChild.setAttribute('src', 'Sprites/Robot_left.png');
         this.x -= 10;
         this.style.left = this.x + 'px';
     }
 
-    moveUp() {
+    moveUp(undo = false) {
         this.firstChild.setAttribute('src', 'Sprites/Robot_up.png');
         this.y -= 10;
         this.style.top = this.y + 'px';
     }
 
-    moveDown() {
+    moveDown(undo = false) {
+
         this.firstChild.setAttribute('src', 'Sprites/Robot_down.png');
         this.y += 10;
         this.style.top = this.y + 'px';
