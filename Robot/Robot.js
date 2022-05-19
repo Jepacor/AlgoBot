@@ -21,29 +21,35 @@ class Robot extends HTMLElement {
         this.style.left = this.x + "px";
         this.style.top = this.y + "px";
         this.style.transition = "left 1s ease-in-out, top 1s ease-in-out";
-        this.innerHTML = `<img src="Sprites/Robot_right.png" alt="loader" class="loader">`;
+        this.innerHTML = `<div class="bubble bubble-bottom-left">Hello ! </div>
+                    <img src="Sprites/Robot_right.png" alt="loader" class="loader">`;
+        this.img = this.querySelector("img");
+        this.textbox = this.querySelector(".Textbox");
+        this.textbox.style.backgroundColor = "rgba(65,65,65,0.47)";
+        this.text = this.getAttribute("text");
     }
 
     static get observedAttributes() {
-        return ['x', 'y', 'direction'];
+        return ['x', 'y', 'direction','text'];
     }
     update() {
         switch (this.direction){
             case "N":
-                this.firstChild.setAttribute('src', 'Sprites/Robot_up.png');
+                this.img.setAttribute('src', 'Sprites/Robot_up.png');
                 break;
             case "E":
-                this.firstChild.setAttribute('src', 'Sprites/Robot_right2.png');
+                this.img.setAttribute('src', 'Sprites/Robot_right2.png');
                 break;
             case "S":
-                this.firstChild.setAttribute('src', 'Sprites/Robot_down.png');
+                this.img.setAttribute('src', 'Sprites/Robot_down.png');
                 break;
             case "W":
-                this.firstChild.setAttribute('src', 'Sprites/Robot_left.png');
+                this.img.setAttribute('src', 'Sprites/Robot_left.png');
                 break;
         }
         this.style.left = this.x + "px";
         this.style.top = this.y + "px";
+        this.textbox.innerHTML = this.text;
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -57,7 +63,7 @@ class Robot extends HTMLElement {
         this.commands = [];
     }
     resetPosition() {
-        this.firstChild.setAttribute('src', 'Sprites/Robot_right.png');
+        this.img.setAttribute('src', 'Sprites/Robot_right.png');
         this.x = this.xorigin;
         this.y = this.yorigin;
         this.style.left = this.x + 'px';

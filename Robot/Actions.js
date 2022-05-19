@@ -47,3 +47,18 @@ class Move extends Action {
         robot.setAttribute("direction",this.directionprev);
     }
 }
+
+class Text extends Action{
+    constructor(text) {
+        super();
+        this.text = text;
+    }
+    execute(robot) {
+        console.log("text");
+        this.textprev = robot.text;
+        robot.setAttribute("text",this.text);
+    }
+    undo(robot) {
+        robot.setAttribute("text",this.textprev);
+    }
+}
