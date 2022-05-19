@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <title>Robot</title>
     <script src="Robot.js"></script>
+    <script src="Actions.js"></script>
 </head>
 <body>
-<sprite-robot id="robot"></sprite-robot>
+<sprite-robot id="robot" x="0" y="50" direction="E"></sprite-robot>
 <script>
+    const robot = document.querySelector('#robot');
     document.addEventListener('keydown', (event) => {
         var name = event.key;
         if (name === 'ArrowUp') {
@@ -20,7 +22,15 @@
             robot.moveRight();
         }
     });
-
 </script>
+<button onclick="robot.push(new Move(30,'N'))">Haut</button>
+<button onclick="robot.push(new Move(30,'S'))">Bas</button>
+<button onclick="robot.push(new Move(30,'E'))">Droite</button>
+<button onclick="robot.push(new Move(30,'W'))">Gauche</button>
+<button onclick="robot.execute()">Faire action</button>
+<button onclick="robot.undo()">Annuler action</button>
+<button onclick="robot.resetPosition()">Reset la position</button>
+<button onclick="robot.resetRobot()">Reset complet</button>
+<button onclick="robot.playAll()">Faire toute les actions</button>
 </body>
 </html>

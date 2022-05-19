@@ -20,18 +20,23 @@ class Move extends Action {
         this.xprev = robot.x;
         this.yprev = robot.y;
         this.directionprev = robot.direction;
+        let newX, newY;
         switch (this.direction) {
             case "N":
-                robot.setAttribute("y",robot.y += this.distance);
+                newY = parseInt(robot.y) - parseInt(this.distance);
+                robot.setAttribute("y",newY);
                 break;
             case "S":
-                robot.setAttribute("y",robot.y -= this.distance);
+                newY = parseInt(robot.y) + parseInt(this.distance);
+                robot.setAttribute("y",newY);
                 break;
             case "E":
-                robot.setAttribute("x",robot.x += this.distance);
+                newX = parseInt(robot.x) + parseInt(this.distance);
+                robot.setAttribute("x",newX);
                 break;
             case "W":
-                robot.setAttribute("x",robot.x -= this.distance);
+                newX = parseInt(robot.x) - parseInt(this.distance);
+                robot.setAttribute("x",newX);
                 break;
         }
         robot.setAttribute("direction",this.direction);
