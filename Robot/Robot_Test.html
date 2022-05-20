@@ -11,18 +11,6 @@
 <sprite-robot id="robot" x="0" y="50" direction="E" text="Hello"></sprite-robot>
 <script>
     const robot = document.querySelector('#robot');
-    document.addEventListener('keydown', (event) => {
-        var name = event.key;
-        if (name === 'ArrowUp') {
-            robot.moveUp();
-        } else if (name === 'ArrowDown') {
-            robot.moveDown();
-        } else if (name === 'ArrowLeft') {
-            robot.moveLeft();
-        } else if (name === 'ArrowRight') {
-            robot.moveRight();
-        }
-    });
 </script>
 <button onclick="robot.push(new Move(30,'N'))">Haut</button>
 <button onclick="robot.push(new Move(30,'S'))">Bas</button>

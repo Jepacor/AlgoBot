@@ -1,0 +1,19 @@
+.NiveauStruct{
+    display : grid;
+    grid-template-columns : repeat(2, 1fr);
+    grid-gap : 10px;
+    grid-auto-rows : minmax(100px, auto);
+}
+.TextEtLimite{
+    grid-column : 1 / 1;
+    grid-row : 1 / 2;
+}
+.Robot{
+    grid-column : 1 / 1;
+    grid-row : 2 / 2;
+    scale: 20%;
+}
+#blocklyDiv{
+    grid-column : 2 / 2;
+    grid-row : 2 / 2;
+}

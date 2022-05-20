@@ -26,7 +26,7 @@ class Robot extends HTMLElement {
         this.style.top = this.y + "px";
         this.style.transition = "left 1s ease-in-out, top 1s ease-in-out";
         this.innerHTML = `<div class="bubble bubble-bottom-left">${this.text}</div>
-                    <img src="Sprites/Robot_right.png" alt="loader" class="loader">`;
+                    <img src="../Robot/Sprites/Robot_right.png" alt="loader" class="loader">`;
         this.img = this.querySelector("img");
         this.textbox = this.querySelector(".bubble");
     }
@@ -37,16 +37,16 @@ class Robot extends HTMLElement {
     update() {
         switch (this.direction){
             case "N":
-                this.img.setAttribute('src', 'Sprites/Robot_up.png');
+                this.img.setAttribute('src', '../Robot/Sprites/Robot_up.png');
                 break;
             case "E":
-                this.img.setAttribute('src', 'Sprites/Robot_right2.png');
+                this.img.setAttribute('src', '../Robot/Sprites/Robot_right2.png');
                 break;
             case "S":
-                this.img.setAttribute('src', 'Sprites/Robot_down.png');
+                this.img.setAttribute('src', '../Robot/Sprites/Robot_down.png');
                 break;
             case "W":
-                this.img.setAttribute('src', 'Sprites/Robot_left.png');
+                this.img.setAttribute('src', '../Robot/Sprites/Robot_left.png');
                 break;
         }
         this.style.left = this.x + "px";
@@ -67,7 +67,7 @@ class Robot extends HTMLElement {
         this.commands = [];
     }
     resetPosition() {
-        this.img.setAttribute('src', 'Sprites/Robot_right.png');
+        this.img.setAttribute('src', '../Robot/Sprites/Robot_right.png');
         this.x = this.xorigin;
         this.y = this.yorigin;
         this.text = this.textorigin;
