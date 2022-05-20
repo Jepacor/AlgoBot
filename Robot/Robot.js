@@ -10,23 +10,25 @@ class Robot extends HTMLElement {
         this.direction = "E";
         this.commands = [];
         this.currentCommand = 0;
+        this.text = "";
+        this.textorigin = "";
     }
 
     connectedCallback() {
         this.style.position = "absolute";
         this.x = this.getAttribute("x");
         this.y = this.getAttribute("y");
+        this.text = this.getAttribute("text");
+        this.textorigin = this.text;
         this.xorigin = this.x;
         this.yorigin = this.y;
         this.style.left = this.x + "px";
         this.style.top = this.y + "px";
         this.style.transition = "left 1s ease-in-out, top 1s ease-in-out";
-        this.innerHTML = `<div class="bubble bubble-bottom-left">Hello ! </div>
+        this.innerHTML = `<div class="bubble bubble-bottom-left">${this.text}</div>
                     <img src="Sprites/Robot_right.png" alt="loader" class="loader">`;
         this.img = this.querySelector("img");
-        this.textbox = this.querySelector(".Textbox");
-        this.textbox.style.backgroundColor = "rgba(65,65,65,0.47)";
-        this.text = this.getAttribute("text");
+        this.textbox = this.querySelector(".bubble");
     }
 
     static get observedAttributes() {
@@ -53,9 +55,11 @@ class Robot extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
+        //Attention à rajouter l'appel quand on rajoute un attribut
         this.direction = this.getAttribute("direction");
         this.x = this.getAttribute('x');
         this.y = this.getAttribute('y');
+        this.text = this.getAttribute('text');
         this.update();
     }
     resetRobot() {
@@ -66,9 +70,9 @@ class Robot extends HTMLElement {
         this.img.setAttribute('src', 'Sprites/Robot_right.png');
         this.x = this.xorigin;
         this.y = this.yorigin;
-        this.style.left = this.x + 'px';
-        this.style.top = this.y + 'px';
+        this.text = this.textorigin;
         this.currentCommand = 0;
+        this.update();
     }
     push (command) {
         this.commands.push(command);
@@ -81,7 +85,7 @@ class Robot extends HTMLElement {
         }
     }
     undo () {
-        if (this.currentCommand > 1 && this.currentCommand <= this.commands.length) {
+        if (this.currentCommand > 0 && this.currentCommand <= this.commands.length) {
             this.commands[this.currentCommand - 1].undo(this);
             this.currentCommand--;
         }
