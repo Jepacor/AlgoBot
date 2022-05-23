@@ -12,6 +12,8 @@ class Robot extends HTMLElement {
         this.currentCommand = 0;
         this.text = "";
         this.textorigin = "";
+        this.checkpoints = [];
+        this.anim = "left 0.5s linear, top 0.5s linear";
     }
 
     connectedCallback() {
@@ -24,7 +26,7 @@ class Robot extends HTMLElement {
         this.yorigin = this.y;
         this.style.left = this.x + "px";
         this.style.top = this.y + "px";
-        this.style.transition = "left 1s ease-in-out, top 1s ease-in-out";
+        this.style.transition = this.anim;
         this.innerHTML = `<div class="bubble bubble-bottom-left">${this.text}</div>
                     <img src="../Robot/Sprites/Robot_right.png" alt="loader" class="loader">`;
         this.img = this.querySelector("img");
@@ -67,10 +69,11 @@ class Robot extends HTMLElement {
         this.commands = [];
     }
     resetPosition() {
+        this.setAttribute("x",this.xorigin);
+        this.setAttribute("y",this.yorigin);
+        this.setAttribute("direction","E");
+        this.setAttribute("text",this.textorigin);
         this.img.setAttribute('src', '../Robot/Sprites/Robot_right.png');
-        this.x = this.xorigin;
-        this.y = this.yorigin;
-        this.text = this.textorigin;
         this.currentCommand = 0;
         this.update();
     }
@@ -96,8 +99,27 @@ class Robot extends HTMLElement {
             if (this.currentCommand >= this.commands.length) {
                 clearInterval(interval);
             }
-        }, 1000);
+        }, 500);
+    }
+    addCheckpoint () {
+        this.checkpoints.push(this.currentCommand);
     }
 
+    goToCheckpoint (numCheckpoint) {
+        if (this.checkpoints.length == 0 || this.checkpoints.length < numCheckpoint){
+            return;
+        } else {
+            this.style.transition = "";
+            this.resetPosition();
+            while (this.currentCommand < this.checkpoints[numCheckpoint]) {
+                this.execute();
+            }
+            this.style.transition = this.anim;
+        }
+    }
+
+    removeCheckpoint (numCheckpoint) {
+        this.checkpoints.splice(numCheckpoint, 1);
+    }
 }
 customElements.define("sprite-robot", Robot);

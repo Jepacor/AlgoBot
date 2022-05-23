@@ -1,3 +1,22 @@
+var verifOneRobot = function(idTest, algoUser) {
+    robot.push(new Text("Entrée : " + entrees[idTest]));
+    let x = entrees[idTest];
+    let y = algoUser(x);
+    robot.push(new Text("Comparaison : résultat donné : " + y + "; résultat attendu : " + sorties[idTest]));
+    if(y != sorties[idTest]) {
+        alert("Erreur : " + y + " ne correspond pas au résultat attendu : " + sorties[idTest]);
+        robot.push(new Text("Résultat : " + "Faux"));
+        return false;
+    }
+    else {
+        alert("Bravo, vous avez réussi le test n°" + (parseInt(idTest)+1));
+        robot.push(new Text("Résultat : " + "Vrai"));
+        return true;
+    }
+}
+
+
+
 var verifJS = function(nbTests) {
     var code = Blockly.JavaScript.workspaceToCode(workspace);
     document.getElementById('envoiCode').value = code;
@@ -9,14 +28,18 @@ var verifJS = function(nbTests) {
     console.log(nbTests);
     let result = true;
     for(i; i < nbTests; i++) {
-        let x = entrees[i];
-        let y = algoUser(x);
-        if(y != sorties[i]) {
-            alert("Erreur : " + y + " ne correspond pas au résultat attendu : " + sorties[i]);
+        // let x = entrees[i];
+        // let y = algoUser(x);
+        // if(y != sorties[i]) {
+        //     alert("Erreur : " + y + " ne correspond pas au résultat attendu : " + sorties[i]);
+        //     result = false;
+        // }
+        // else {
+        //     alert("Bravo, vous avez réussi le test n°" + (i+1));
+        // }
+        resultOne = verifOneRobot(i, algoUser);
+        if(!resultOne) {
             result = false;
-        }
-        else {
-            alert("Bravo, vous avez réussi le test n°" + (i+1));
         }
 
     }

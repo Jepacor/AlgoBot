@@ -12,7 +12,7 @@ function renderBlockly (toolboxPath, nbBlocks) {
             }
             else {
                 //Premier lancement de Blockly
-                workspace = Blockly.inject('blocklyDiv', {maxBlocks: nbBlocks, trashcan: true, toolbox : xhr.responseXML.activeElement});
+                workspace = Blockly.inject('blocklyDiv', {maxBlocks: 100, trashcan: true, toolbox : xhr.responseXML.activeElement});
                 function onchange(event) {
                     document.getElementById('capacity').textContent =
                         workspace.remainingCapacity();

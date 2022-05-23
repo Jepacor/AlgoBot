@@ -1,8 +1,3 @@
-<!--<script>-->
-<!--//     import * as Blockly from 'blockly/core';-->
-<!--// import 'blockly/blocks';-->
-<!--// import 'blockly/php';-->
-<!--// import * as Fr from 'blockly/msg/fr'; possible TODO utiliser ces imports-->
 <?php
 require_once ("../Testing/TestVerif.php");
 ?>
@@ -23,6 +18,7 @@ require_once ("../Testing/TestVerif.php");
 <!--Robot-->
 <link rel="stylesheet" href="../Robot/bubble.css">
 <script src="../Robot/Robot.js"></script>
+<script src="../Robot/CodeToRobot.js"></script>
 <script src="../Robot/Actions.js"></script>
 
 <script>
@@ -74,6 +70,7 @@ require_once ("../Testing/TestVerif.php");
     <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
 </div>
 <script>
+    const robot = document.querySelector('#robot');
     var run = function() {
         var code = Blockly.PHP.workspaceToCode(workspace);
         document.getElementById('envoiCode').value = code;
@@ -82,11 +79,16 @@ require_once ("../Testing/TestVerif.php");
     var workspace;
     renderBlockly('toolbox.xml',6);
 </script>
-<button type="button" onclick="verifJS(nbTests)">Vérification en JS !</button>
+<button type="button" onclick="CodeToRobot(nbTests)">Vérification en JS !</button>
 <form action="./Resultat.php" method="post">
     <input type="hidden" name="code" id="envoiCode" value="">
     <input type="submit" onclick="run()" value="Vérifier en PHP !">
 </form>
+<button onclick="robot.execute()">Faire action</button>
+<button onclick="robot.undo()">Annuler action</button>
+<button onclick="robot.resetPosition()">Reset la position</button>
+<button onclick="robot.resetRobot()">Reset complet</button>
+<button onclick="robot.playAll()">Faire toute les actions</button>
 </body>
 </html>
 
