@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Map</title>
+    <link rel="stylesheet" href="map.css">
+    <script src="Map.js"></script>
+</head>
+<body>
+<div id="mapContainer"></div>
+<script>
+  mapTable = [[0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 1, 0, 1, 0, 1, 0],
+    [0, 1, 1, 0, 1, 1, 1, 0],
+    [0, 1, 0, 1, 0, 1, 0, 0],
+    [0, 1, 1, 1, 1, 1, 1, 0],
+    [0, 0, 0, 1, 0, 0, 1, 0],
+    [0, 1, 1, 1, 1, 0, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0]];
+  map = new Map(mapTable, 1, 1);
+  map.render();
+</script>
+
+</body>
+</html>

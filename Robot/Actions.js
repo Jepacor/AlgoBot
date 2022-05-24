@@ -20,6 +20,9 @@ class Move extends Action {
         this.xprev = robot.x;
         this.yprev = robot.y;
         this.directionprev = robot.direction;
+        if (this.direction == "F") { // Rajout de la possibilité d'avancer dans la même direction
+            this.direction = robot.direction;
+        }
         let newX, newY;
         switch (this.direction) {
             case "N":
@@ -57,6 +60,68 @@ class Text extends Action{
         console.log("text");
         this.textprev = robot.text;
         robot.setAttribute("text",this.text);
+    }
+    undo(robot) {
+        robot.setAttribute("text",this.textprev);
+    }
+}
+
+class Check extends Action {
+    constructor(direction) {
+        super();
+        this.direction = direction;
+    }
+    execute(robot) {
+        this.textprev = robot.text;
+        let resultat;
+        switch (robot.direction) {
+            case "N":
+                if (this.direction == "L") {
+                    resultat = robot.map.checkCase(robot.map.robotX - 1, robot.map.robotY);
+                } else {
+                    resultat = robot.map.checkCase(robot.map.robotX + 1, robot.map.robotY);
+                }
+                break;
+            case "S":
+                if (this.direction == "L") {
+                    resultat = robot.map.checkCase(robot.map.robotX + 1, robot.map.robotY);
+                } else {
+                    resultat = robot.map.checkCase(robot.map.robotX - 1, robot.map.robotY);
+                }
+                break;
+            case "E":
+                if (this.direction == "L") {
+                    resultat = robot.map.checkCase(robot.map.robotX, robot.map.robotY + 1);
+                } else {
+                    resultat = robot.map.checkCase(robot.map.robotX, robot.map.robotY - 1);
+                }
+                break;
+            case "W":
+                if (this.direction == "L") {
+                    resultat = robot.map.checkCase(robot.map.robotX, robot.map.robotY - 1);
+                } else {
+                    resultat = robot.map.checkCase(robot.map.robotX, robot.map.robotY + 1);
+                }
+                break;
+        }
+        if (resultat) {
+            if (this.direction == "L") {
+                robot.setAttribute("text","Case valide à gauche du robot !");
+            }
+            else {
+                robot.setAttribute("text","Case valide à droite du robot !");
+            }
+            return true;
+        }
+        else {
+            if (this.direction == "L") {
+                robot.setAttribute("text","Case invalide à gauche du robot !");
+            }
+            else {
+                robot.setAttribute("text","Case invalide à droite du robot !");
+            }
+            return false;
+        }
     }
     undo(robot) {
         robot.setAttribute("text",this.textprev);

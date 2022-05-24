@@ -37,13 +37,14 @@ var verifJS = function(nbTests) {
         // else {
         //     alert("Bravo, vous avez réussi le test n°" + (i+1));
         // }
-        resultOne = verifOneRobot(i, algoUser);
+        let resultOne = verifOneRobot(i, algoUser);
         if(!resultOne) {
             result = false;
         }
 
     }
     if(result == false) {
+
     }
 
     else {

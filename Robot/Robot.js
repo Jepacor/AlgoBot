@@ -87,6 +87,11 @@ class Robot extends HTMLElement {
             this.currentCommand++;
         }
     }
+    pushExecute (command) {
+        this.push(command);
+        this.execute();
+    }
+
     undo () {
         if (this.currentCommand > 0 && this.currentCommand <= this.commands.length) {
             this.commands[this.currentCommand - 1].undo(this);
@@ -121,5 +126,11 @@ class Robot extends HTMLElement {
     removeCheckpoint (numCheckpoint) {
         this.checkpoints.splice(numCheckpoint, 1);
     }
+
+    associateMap(map) {
+        this.map = map;
+    }
+
+
 }
 customElements.define("sprite-robot", Robot);
