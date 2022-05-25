@@ -21,6 +21,13 @@ else{
         //Utilisateur trouvé
         session_start();
         $_SESSION['username'] = $_POST['username'];
+        $_SESSION['id'] = $reponse[0]['Id_Utilisateurs'];
+        if ($reponse[0]['Admin'] == true){
+            $_SESSION['isAdmin'] = 1;
+        }
+        else{
+            $_SESSION['isAdmin'] = 0;
+        }
         header('Location: ../Blockly/Blockly_Test.php');
     }
     else{

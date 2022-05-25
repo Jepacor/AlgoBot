@@ -15,7 +15,7 @@ class MyPDO
             return self::$instance;
         }
     }
-    public static function requeteStandard(string $requete, array $parametres) : array
+    public static function requeteStandard(string $requete, array $parametres = null) : array
     {
         $pdo = self::getInstance();
         $stmt = $pdo->prepare($requete);
