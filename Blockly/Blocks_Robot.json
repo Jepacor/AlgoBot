@@ -1,0 +1,67 @@
+[{
+  "type": "check_gauche",
+  "message0": "Vérifier à : %1 %2",
+  "args0": [
+    {
+      "type": "field_dropdown",
+      "name": "Direction",
+      "options": [
+        [
+          "gauche",
+          "L"
+        ],
+        [
+          "droite",
+          "R"
+        ]
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "Check à gauche",
+      "align": "RIGHT"
+    }
+  ],
+  "output": null,
+  "colour": 230,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "turn",
+  "message0": "Tourner à : %1 %2",
+  "args0": [
+    {
+      "type": "field_dropdown",
+      "name": "Direction",
+      "options": [
+        [
+          "droite",
+          "R"
+        ],
+        [
+          "gauche",
+          "L"
+        ],
+        [
+          "option",
+          "OPTIONNAME"
+        ]
+      ]
+    },
+    {
+      "type": "input_value",
+      "name": "Tourner à :"
+    }
+  ],
+  "colour": 230,
+  "tooltip": "",
+  "helpUrl": ""
+},
+{
+  "type": "avancer",
+  "message0": "Avancer",
+  "colour": 230,
+  "tooltip": "",
+  "helpUrl": ""
+}]

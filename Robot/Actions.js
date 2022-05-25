@@ -127,3 +127,51 @@ class Check extends Action {
         robot.setAttribute("text",this.textprev);
     }
 }
+
+class Turn extends Action {
+    constructor(direction) {
+        super();
+        this.direction = direction;
+    }
+    execute(robot) {
+        this.directionprev = robot.direction;
+        switch (robot.direction) {
+            case "N":
+                if (this.direction == "L") {
+                    robot.setAttribute("direction","W");
+                }
+                else {
+                    robot.setAttribute("direction","E");
+                }
+                break;
+            case "S":
+                if (this.direction == "L") {
+                    robot.setAttribute("direction","E");
+                }
+                else {
+                    robot.setAttribute("direction","W");
+                }
+                break;
+            case "E":
+                if (this.direction == "L") {
+                    robot.setAttribute("direction","N");
+                }
+                else {
+                    robot.setAttribute("direction","S");
+                }
+                break;
+            case "W":
+                if (this.direction == "L") {
+                    robot.setAttribute("direction","S");
+                }
+                else {
+                    robot.setAttribute("direction","N");
+                }
+
+        }
+
+    }
+    undo(robot) {
+        robot.setAttribute("direction",this.directionprev);
+    }
+}

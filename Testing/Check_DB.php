@@ -9,14 +9,13 @@ if ($_SESSION['isAdmin'] != 1) {
 <form action="Check_DB.php" method="post">
     <p>Inspecter le code d'un utilisateur : </p>
     <input type="text" name="username" id="username">
-    <input type="submit" value="Se connecter">
+    <input type="submit" value="Filtrer">
 </form>
 <table>
     <tr>
         <th>Utilisateur</th>
         <th>Code</th>
     </tr>
-</table>
 <?php
 if (empty($_POST['username'])){
     $requeteA = "SELECT * FROM Utilisateurs";
@@ -45,3 +44,5 @@ else {
         echo "</tr>";
     }
 }
+?>
+</table>

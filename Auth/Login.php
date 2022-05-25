@@ -28,7 +28,7 @@ else{
         else{
             $_SESSION['isAdmin'] = 0;
         }
-        header('Location: ../Blockly/Blockly_Test.php');
+        echo "Vous êtes connecté ! Vous pouvez recharger la page.t <br>";
     }
     else{
         //Mauvais mot de passe

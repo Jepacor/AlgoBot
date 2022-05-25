@@ -22,6 +22,5 @@ else{
     } catch (Exception $e) {
         header('Location: Register.html'); //Si le nom d'utilisateur est déjà pris, il est redirigé vers la page d'inscription
     }
-
     echo "Vous êtes inscrit !<br>";
 }
