@@ -17,7 +17,11 @@ else{
     $password = $date.$password; //La date est utilisée comme sel
     $password = hash('sha3-256', $password);
     $insert = "INSERT INTO Utilisateurs (Username, Password, Date_Inscription) VALUES (:username, :password, :date)";
-    MyPDO::requeteStandard($insert, array(':username' => $username, ':password' => $password, ':date' => $date));
+    try {
+        MyPDO::requeteStandard($insert, array(':username' => $username, ':password' => $password, ':date' => $date));
+    } catch (Exception $e) {
+        header('Location: Register.html'); //Si le nom d'utilisateur est déjà pris, il est redirigé vers la page d'inscription
+    }
 
     echo "Vous êtes inscrit !<br>";
 }
