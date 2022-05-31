@@ -1,0 +1,18 @@
+<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+  <block type="controls_whileUntil">
+    <field name="MODE">WHILE</field>
+    <statement name="DO">
+      <block type="controls_if">
+        <value name="IF0">
+          <block type="check_gauche">
+            <field name="Direction">L</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="turn">
+    <field name="Direction">R</field>
+  </block>
+  <block type="avancer"></block>
+</xml>

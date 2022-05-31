@@ -28,18 +28,22 @@ class Move extends Action {
             case "N":
                 newY = parseInt(robot.y) - parseInt(this.distance);
                 robot.setAttribute("y",newY);
+                robot.map.robotY = parseInt(robot.map.robotY) + parseInt(1);
                 break;
             case "S":
                 newY = parseInt(robot.y) + parseInt(this.distance);
                 robot.setAttribute("y",newY);
+                robot.map.robotY = parseInt(robot.map.robotY) - parseInt(1);
                 break;
             case "E":
                 newX = parseInt(robot.x) + parseInt(this.distance);
                 robot.setAttribute("x",newX);
+                robot.map.robotX = parseInt(robot.map.robotX) - parseInt(1);
                 break;
             case "W":
                 newX = parseInt(robot.x) - parseInt(this.distance);
                 robot.setAttribute("x",newX);
+                robot.map.robotX = parseInt(robot.map.robotX) + parseInt(1);
                 break;
         }
         robot.setAttribute("direction",this.direction);

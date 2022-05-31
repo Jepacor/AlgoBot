@@ -8,6 +8,10 @@ require_once ("../Testing/TestVerif.php");
 <script src="../node_modules/blockly/msg/fr.js"></script>
 <script src="../node_modules/blockly/php_compressed.js"></script>
 <script src="../node_modules/blockly/javascript_compressed.js"></script>
+<!--Blocks custom pour le déplacement du robot-->
+<script src="Blocks_Robot_generator.js"></script>
+<script src="Blocks_Robot.json"></script>
+
 <!-- Mes scripts -->
 <script src="../Testing/TestVerif.js"></script>
 <script src="LoaderBlockly.js"></script>

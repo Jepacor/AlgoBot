@@ -1,22 +1,29 @@
 Blockly.JavaScript['check_gauche'] = function(block) {
   var dropdown_direction = block.getFieldValue('Direction');
   var value_check___gauche = Blockly.JavaScript.valueToCode(block, 'Check à gauche', Blockly.JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...';
-  // TODO: Change ORDER_NONE to the correct strength.
+  if (dropdown_direction == "L") {
+        var code = 'robot.pushExecute(new Check("L"));\n';
+  }
+    else {
+        var code = 'robot.pushExecute(new Check("R"));\n';
+  }
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.JavaScript['turn'] = function(block) {
   var dropdown_direction = block.getFieldValue('Direction');
   var value_tourner____ = Blockly.JavaScript.valueToCode(block, 'Tourner à :', Blockly.JavaScript.ORDER_ATOMIC);
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
+  var code;
+  if (dropdown_direction == "L") {
+     code = 'robot.pushExecute(new Turn("L"));\n';
+  }
+    else {
+     code = 'robot.pushExecute(new Turn("R"));\n';
+  }
   return code;
 };
 
 Blockly.JavaScript['avancer'] = function(block) {
-  // TODO: Assemble JavaScript into code variable.
-  var code = '...;\n';
+  var code = 'robot.pushExecute(new Move("F",30));\n';
   return code;
 };
